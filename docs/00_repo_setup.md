@@ -70,4 +70,4 @@ git push origin phase0-repo
 - [x] .gitignore / README.md / NOTICE / LICENSE / 模板就位
 - [x] `scripts/setup_env.sh` 一键环境脚本就位
 - [x] 上游 submodule 添加成功（pin @3f352d5，`git submodule status` 可查）
-- [ ] 远程 push 与 tag phase0-repo 完成（用户添加公钥后执行；仓库级 core.sshCommand 已配好）
+- [x] 远程 push 与 tag phase0-repo 完成（2026-10-16 22:20，SSH 认证通过；rebase 后初始提交自动跳过，2 个提交落在远程历史之上）
