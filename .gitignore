@@ -1,0 +1,20 @@
+# ROS2 / colcon 构建产物
+build/
+install/
+log/
+.colcon/
+
+# Python
+__pyengl__/
+__pycache__/
+*.pyc
+
+# 大文件媒体（rosbag/视频用 git-lfs 或外链，避免仓库膨胀）
+*.bag
+*.mp4
+*.mov
+
+# 系统/编辑器
+.DS_Store
+*.swp
+*.tmp

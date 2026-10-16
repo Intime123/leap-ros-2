@@ -1,0 +1,23 @@
+# NOTICE
+
+## 上游代码（src/upstream/ 下所有内容）
+
+本仓库通过 git submodule 引入上游项目：
+
+- leap_ros_ws: https://github.com/czu963889306-dev/leap_ros_ws
+- 主仓库: https://github.com/czu963889306-dev/leap_ros2
+
+上游作者声明：**「未经允许禁止商用，本项目仅供学习、交流和研究使用。」**
+
+因此：`src/upstream/` 下的全部内容沿用上游条款，**禁止商用**；本仓库整体因包含上游代码，同样不得用于商业用途。如需商用，请联系上游作者获得授权。
+
+## 自研部分
+
+本仓库中以下内容为本作者自研，采用 MIT License（见 [LICENSE](LICENSE)）：
+
+- `src/leap_obstacle_avoidance/`（自研避障节点，规划中）
+- `docs/`、`scripts/`、`maps/` 等工程文档与脚本
+
+## 修改上游的约定
+
+如对上游包进行修改，保留原文件头与版权声明，并在 `docs/` 对应阶段文档中记录修改点，不重新许可上游任何文件。
