@@ -1,0 +1,15 @@
+2.8G	riscv32-esp-elf/
+2.6G	esp-clang/
+1.1G	xtensa-esp-elf/
+485M	components/
+336M	esp-clang-libs/
+124M	riscv32-esp-elf-gdb/
+123M	xtensa-esp-elf-gdb/
+107M	python/
+75M	esp-clangd/
+31M	esp32ulp-elf/
+12M	openocd-esp32/
+6.7M	esp-rom-elfs/
+276K	ninja/
+44K	shims/
+9.5G total

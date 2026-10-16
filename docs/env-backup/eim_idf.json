@@ -1,0 +1,18 @@
+{
+  "gitPath": "/usr/bin/git",
+  "idfInstalled": [
+    {
+      "activationScript": "/home/yaen/.espressif/tools/activate_idf_v6.1.sh",
+      "id": "esp-idf-909b6597583b4829b6452923bb4a1ee1",
+      "idfToolsPath": "/home/yaen/.espressif/tools",
+      "name": "v6.1",
+      "path": "/home/yaen/.espressif/v6.1/esp-idf",
+      "python": "/home/yaen/.espressif/tools/python/v6.1/venv/bin/python",
+      "installationConfig": "ARUAAAAAAAAAL2hvbWUveWFlbi8uZXNwcmVzc2lmASIAAAAAAAAAL2hvbWUveWFlbi8uZXNwcmVzc2lmL3Y2LjEvZXNwLWlkZgEbAAAAAAAAAC9ob21lL3lhZW4vLmVzcHJlc3NpZi90b29scwEaAAAAAAAAAC9ob21lL3lhZW4vLmVzcHJlc3NpZi9kaXN0ARsAAAAAAAAAL2hvbWUveWFlbi8uZXNwcmVzc2lmL3Rvb2xzAQEAAAAAAAAAAwAAAAAAAABhbGwBAQAAAAAAAAAEAAAAAAAAAHY2LjEBEAAAAAAAAAB0b29scy90b29scy5qc29uAAEPAAAAAAAAAGVpbV9jb25maWcudG9tbAEAAQABJQAAAAAAAABodHRwczovL2RsLmVzcHJlc3NpZi5jbi9naXRodWJfYXNzZXRzARwAAAAAAAAAaHR0cHM6Ly9naXQuZXNwcmVzc2lmLmNvbS5jbgEoAAAAAAAAAGh0dHBzOi8vcHlwaS50dW5hLnRzaW5naHVhLmVkdS5jbi9zaW1wbGUBAQEAAQEAAAAAAAAAAwAAAAAAAABpZGUBAQAAAAAAAAAEAAAAAAAAAHY2LjEBAAAAAAAAAAMAAAAAAAAAaWRlAAEBAAAAAAAAAAQAAAAAAAAAdjYuMQsAAAAAAAAAEgAAAAAAAAB4dGVuc2EtZXNwLWVsZi1nZGITAAAAAAAAAHJpc2N2MzItZXNwLWVsZi1nZGIOAAAAAAAAAHh0ZW5zYS1lc3AtZWxmCQAAAAAAAABlc3AtY2xhbmcOAAAAAAAAAGVzcC1jbGFuZy1saWJzDwAAAAAAAAByaXNjdjMyLWVzcC1lbGYMAAAAAAAAAGVzcDMydWxwLWVsZg0AAAAAAAAAb3Blbm9jZC1lc3AzMgUAAAAAAAAAbmluamEMAAAAAAAAAGVzcC1yb20tZWxmcwoAAAAAAAAAZXNwLWNsYW5nZAABAAABAAEAAQYAAAAAAAAAcHl0aG9uAAEbAAAAAAAAAC9ob21lL3lhZW4vLmVzcHJlc3NpZi90b29scwEJAAAAAAAAAHB5dGhvbjMxMwEA",
+      "status": "finished"
+    }
+  ],
+  "idfSelectedId": "esp-idf-909b6597583b4829b6452923bb4a1ee1",
+  "eimPath": "/home/yaen/.espressif/eim/eim_v0.20.0",
+  "version": "3.0"
+}
