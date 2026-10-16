@@ -6,6 +6,7 @@
 # 用法：bash scripts/setup_env.sh
 # 注意：需要 sudo 权限；磁盘预留 ≥10GB；全程约 10–30 分钟（视网速）
 # 自愈：自动清理陈旧 ROS 源与过期密钥（EXPKEYSIG F42ED6FBAB17C654 / 无 Release 文件）
+# 自愈：source setup.bash 前临时 set +u（避免 AMENT_TRACE_SETUP_FILES 未绑定变量报错）
 # ============================================================
 set -euo pipefail
 
@@ -37,7 +38,10 @@ echo "==> [3/8] 安装 ROS2 Jazzy desktop（含 rviz2/teleop/robot_state_publish
 sudo apt update
 sudo apt install -y ros-jazzy-desktop
 grep -q "/opt/ros/jazzy/setup.bash" ~/.bashrc || echo "source /opt/ros/jazzy/setup.bash" >> ~/.bashrc
+# ROS2 setup.bash 引用 AMENT_TRACE_SETUP_FILES，未赋值变量在 set -u 下会报“未绑定的变量”
+set +u
 source /opt/ros/jazzy/setup.bash
+set -u
 
 echo "==> [4/8] 安装 SLAM / 导航 / 遥控 / 构建工具"
 sudo apt install -y \
@@ -61,7 +65,9 @@ else
   cd ~/microros_agent_ws/src
   git clone -b jazzy https://github.com/micro-ROS/micro-ROS-Agent.git
   cd ~/microros_agent_ws
+  set +u
   source /opt/ros/jazzy/setup.bash
+  set -u
   rosdep install --from-paths src --ignore-src -y
   colcon build --symlink-install
   grep -q "microros_agent_ws/install/setup.bash" ~/.bashrc || \
