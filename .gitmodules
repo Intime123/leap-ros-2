@@ -4,3 +4,4 @@
 [submodule "src/upstream/leap_ros_mcu_driver"]
 	path = src/upstream/leap_ros_mcu_driver
 	url = https://github.com/czu963889306-dev/leap_ros_mcu_driver.git
+	ignore = dirty
