@@ -14,10 +14,13 @@ WS="${WS:-$HOME/leap_ws}"
 OUT="${OUT:-$WS/bags/$(date +%Y%m%d_%H%M%S)}"
 mkdir -p "$OUT"
 
+# ROS2 setup.bash 引用未赋值变量 AMENT_TRACE_SETUP_FILES，在 set -u 下会报“未绑定的变量”
+set +u
 # shellcheck disable=SC1091
 source /opt/ros/jazzy/setup.bash
 # shellcheck disable=SC1091
 source "$WS/install/setup.bash"
+set -u
 
 echo "输出目录: $OUT"
 echo "=== [1/4] 话题频率（每项 5 秒） ==="

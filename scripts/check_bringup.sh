@@ -8,10 +8,13 @@ set -u
 SHORT=0
 [ "${1:-}" = "--short" ] && SHORT=1
 
+# ROS2 setup.bash 引用未赋值变量 AMENT_TRACE_SETUP_FILES，在 set -u 下会报“未绑定的变量”
+set +u
 # shellcheck disable=SC1091
 source /opt/ros/jazzy/setup.bash
 # shellcheck disable=SC1091
 source "${WS:-$HOME/leap_ws}/install/setup.bash"
+set -u
 
 echo "=== node list ==="
 ros2 node list
