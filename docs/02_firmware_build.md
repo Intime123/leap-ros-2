@@ -75,6 +75,7 @@ idf.py build
 | ament 克隆 502 | HTTPS 代理不稳 | git 全局改写为 SSH | 已解决 |
 | `ament_cmake_python` 仓库不存在 | 该仓库在 github.com/ament/ 下本就没有（mk 引用无效） | 撤销补丁，实际不需要 | 已解决 |
 | colcon 不重跑 | 失败残留 install/ 骗过 make | 删 install/ 强制重建 | 已解决 |
+| 用户桌面副本（网盘 zip）报 `address-of-packed-member` error | zip 的旧 sdkconfig 未开 `CONFIG_COMPILER_DISABLE_DEFAULT_ERRORS`，IDF 5.5.3 默认注入裸 `-Werror`（GCC 14 对 MAVLink packed 结构成员取地址必报） | sdkconfig 645 行改 `=y`（降级为 `-Werror=all`，与仓库副本一致），重编 BUILD_EXIT=0 | 已解决 |
 | eim remove v6.1 挂起 | 原因待查（交互/网络），拖死执行通道 | 用户 pkill，待重删 | 待验证 |
 
 ## 知识体系
