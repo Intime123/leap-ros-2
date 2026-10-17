@@ -10,7 +10,7 @@ WS="${WS:-$HOME/leap_ws}"
 UPSTREAM="${UPSTREAM:-$HOME/leap-ros-2/src/upstream/leap_ros_ws}"
 # 只构建阶段 3 需要的包：gmapping 系在 Jazzy 下无维护（openslam_gmapping/slam_gmapping 跳过），
 # cartographer / navigation2 / camera / mavlink_bridge 在阶段 4-6 按需另建。
-PKGS="leap_interfaces xuegecar_description xuegecar_bringup camsense_lidar"
+PKGS="leap_interfaces xuegecar_description xuegecar_bringup camsense_lidar xuegecar_cartographer"
 # 与 apt 安装的 ROS 一致（/opt/ros/jazzy/lib/python3.12）。避免被 PATH 里的第三方 Python 抢走。
 ROS_PY=/usr/bin/python3
 
