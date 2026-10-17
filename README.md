@@ -44,6 +44,7 @@ leap-ros-2/
 | `docs/10_项目总览与架构.md` | 架构与数据流：仓库地图、硬件清单、三层架构、协议矩阵 |
 | `docs/12_已完成阶段总结.md` | 已完成阶段的实测数据与根因链（含 v6.1 判定与 v5.5.3 迁移全记录） |
 | `docs/02_firmware_build.md` | 阶段 2 完整留痕：v6.1 判定、v5.5.3 迁移、烧录与 agent 连通 |
+| `docs/03_ros2_bringup.md` | 阶段 3：工作空间编译、bringup 自测、固件 QoS 与单位约定梳理 |
 | `docs/13_简历与面试问答.md` | 简历三版描述 + 分模块面试答题库 |
 | `docs/template_phase.md` | 阶段总结模板（每阶段完成后填写） |
 | `docs/00_repo_setup.md` | 阶段 0 完整记录 |
@@ -55,7 +56,7 @@ leap-ros-2/
 | 0 | Git 基线与仓库骨架 | ✅ 完成（`docs/00_repo_setup.md`） |
 | 1 | Ubuntu 24.04 + ROS2 Jazzy 环境 | ✅ 完成（本机已核实：jazzy + colcon + agent 源码编译） |
 | 2 | 固件烧录与 agent 连通 | ✅ 完成（2026-10-17：v6.1 判定不兼容迁移 v5.5.3，固件上板，五话题上线；`docs/02_firmware_build.md`） |
-| 3 | 工作空间编译与 bringup | 🔶 进行中（下一步） |
+| 3 | 工作空间编译与 bringup | 🔶 编译/自测完成（2026-10-17，4 包 8s 通过，`docs/03_ros2_bringup.md`）；实车遥控待本人执行 |
 | 4 | Cartographer SLAM 建图 | 未开始 |
 | 5 | 自研避障节点（C++ rclcpp） | 未开始 |
 | 6 | Nav2 自主导航 | 未开始 |
@@ -73,11 +74,21 @@ bash scripts/setup_env.sh
 # 2. 拉取上游工作空间（已配置 submodule 时）
 git submodule update --init --recursive
 
-# 3. 编译（跳过无 Jazzy 支持的 gmapping）
-cd src/upstream/leap_ros_ws
-source /opt/ros/jazzy/setup.bash
-colcon build --packages-skip openslam_gmapping slam_gmapping
+# 3. 编译工作空间（4 个核心包，跳过无 Jazzy 支持的 gmapping）
+bash scripts/build_ws.sh            # 加 --clean 全量重建，--rosdep 装依赖
+
+# 4. 启动（小车开机并连同一热点后）
+bash scripts/start_stack.sh         # micro-ROS agent + bringup
+bash scripts/check_bringup.sh       # 体检：话题/频率/QoS/TF
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
+
+| 脚本 | 作用 |
+|---|---|
+| `scripts/setup_env.sh` | 阶段 1：一键装 ROS2 Jazzy + micro-ROS agent 依赖 |
+| `scripts/build_ws.sh` | 阶段 3：同步上游源码 + colcon 构建核心包（幂等） |
+| `scripts/start_stack.sh` | 阶段 3：agent 后台 + bringup 前台，Ctrl-C 全停 |
+| `scripts/check_bringup.sh` | 阶段 3：话题/频率/QoS/TF 体检 |
 
 分阶段详细操作与留痕见 [docs/](docs/)。
 
