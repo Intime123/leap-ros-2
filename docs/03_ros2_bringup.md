@@ -50,6 +50,23 @@ bash scripts/check_bringup.sh               # 体检：话题/频率/QoS/TF
 | 依赖包 | 齐全 | `teleop_twist_keyboard` / `robot_state_publisher` / `xacro` / `rviz2` 已装；`joint_state_publisher_gui` 缺失（不影响 launch） | `ros2 pkg list` |
 | rclpy | 可用 | `/opt/ros/jazzy/lib/python3.12/site-packages/rclpy` | source 后 import 成功 |
 
+### 实车实测（2026-10-18 00:20，`~/leap_ws/bags/20261018_002001/`）
+
+| 指标 | 源码推断 | 实测 | 证据文件 |
+|---|---|---|---|
+| `/odom` 频率 | 50 Hz | **49.4 Hz**（min 0.010s / max 0.032s / σ 0.0045s） | `hz_odom.txt` |
+| `/scan` 频率 | 10 Hz | **7.9–8.2 Hz**（min 0.090s / max 0.221s / σ 0.041s，抖动偏大） | `hz_scan.txt` |
+| `/imu` 频率 | 50 Hz | **49.5 Hz**（min 0.009s / max 0.048s） | `hz_imu.txt` |
+| `/odom` QoS | RELIABLE | **RELIABLE** ✅ | `qos_odom.txt` |
+| `/scan` QoS | RELIABLE | **RELIABLE** ✅ | `qos_scan.txt` |
+| `/imu` QoS | BEST_EFFORT | **BEST_EFFORT** ✅ | `qos_imu.txt` |
+| `/odom` frame | `odom` → `base_link` | 一致 ✅ | `odom_once.txt` |
+| `/scan` 规格 | 360 点 / 1° | `angle_min=0`、`angle_max=6.2657`（359°）、`increment=0.01745`、`range_min=0.02`、`range_max=12.0`、`scan_time=0.1` ✅ | `scan_once.txt` |
+| 电池 | 2S 锂电 | `voltage=7.79V`、`percentage=0.75`、`power_supply_status=2`（放电中） | `battery_once.txt` |
+
+结论：**源码推断的 QoS 约定全部被实测证实**——订阅 `/imu`（以及 `/ultrasonic`、`/battery_state`）必须用 `SensorDataQoS()`，用默认 QoS 会静默收不到。
+`/scan` 实测约 8 Hz 而非标称 10 Hz，且抖动 σ=41 ms（`scan_once.txt` 的 `scan_time` 仍报 0.1，说明是传输侧抖动而非雷达转速）→ 阶段 4 Cartographer 的 `motion_filter` 与 `num_accumulated_range_data` 需按 8 Hz 估。
+
 工具链事实：gcc 13.3.0、cmake 3.28.3、ROS `ros_environment 4.2.1`、Python 绑定 3.12。
 
 ## 注意事项（坑）
@@ -106,6 +123,7 @@ bash scripts/check_bringup.sh               # 体检：话题/频率/QoS/TF
 - [x] launch 起 3 节点，`/robot_description`、`/tf`、`/tf_static` 正常
 - [x] TF `odom→base_footprint` 有广播
 - [x] 文档/脚本入库 + 进度更新（本次 commit）
-- [ ] 实车：`teleop_twist_keyboard` 发 `/cmd_vel`，车轮响应（本人执行）
-- [ ] 实车：`ros2 topic hz /odom /scan /imu` 实测频率（50/10/50 Hz 预期）
+- [x] 实车：`teleop_twist_keyboard` 发 `/cmd_vel`，车轮响应（2026-10-18 00:20 用户确认）
+- [x] 实车：`/odom` 49.4 Hz / `/scan` 7.9 Hz / `/imu` 49.5 Hz；QoS 与源码推断一致（`bags/20261018_002001/`）
+- [ ] 里程计标定：直行 1 m、旋转 360° 的实测误差（bag 补录后分析）
 - [ ] RViz 加载 `display.rviz` 显示模型 + 雷达点
