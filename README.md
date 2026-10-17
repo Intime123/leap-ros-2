@@ -25,29 +25,43 @@
 ```
 leap-ros-2/
 ├─ src/
-│  ├─ upstream/leap_ros_ws/     # 上游 ROS2 工作空间（git submodule）
-│  └─ leap_obstacle_avoidance/  # 自研避障节点（C++ rclcpp，规划中）
-├─ maps/                        # SLAM 地图（阶段 4）
-├─ bags/                        # 演示 rosbag
-├─ media/                       # 截图 / 地图 / 视频
-├─ docs/                        # 分阶段留痕文档 00–07
-├─ scripts/                     # 一键环境搭建等脚本
+│  ├─ upstream/leap_ros_ws/          # 上游 ROS2 工作空间（git submodule）
+│  ├─ upstream/leap_ros_mcu_driver/  # 上游 ESP32-S3 固件（git submodule）
+│  └─ leap_obstacle_avoidance/       # 自研避障节点（C++ rclcpp，阶段 5）
+├─ maps/                             # SLAM 地图（阶段 4）
+├─ bags/                             # 演示 rosbag
+├─ media/                            # 截图 / 地图 / 视频
+├─ docs/                             # 阶段留痕 00–07 + 参考文档 10–13
+├─ scripts/                          # 一键环境搭建等脚本
 ├─ NOTICE / LICENSE / .gitignore
 ```
+
+## 文档索引
+
+| 文档 | 内容 |
+|---|---|
+| `docs/11_项目阶段框架.md` | **阶段 0–7 路线图**：目标/命令/验收/知识体系/坑位 |
+| `docs/10_项目总览与架构.md` | 架构与数据流：仓库地图、硬件清单、三层架构、协议矩阵 |
+| `docs/12_已完成阶段总结.md` | 已完成阶段的实测数据与根因链（含 v6.1 适配全记录） |
+| `docs/13_简历与面试问答.md` | 简历三版描述 + 分模块面试答题库 |
+| `docs/template_phase.md` | 阶段总结模板（每阶段完成后填写） |
+| `docs/00_repo_setup.md` | 阶段 0 完整记录 |
 
 ## 进度
 
 | 阶段 | 内容 | 状态 |
 |---|---|---|
-| 0 | Git 基线与仓库骨架 | 进行中 |
-| 1 | Ubuntu 24.04 + ROS2 Jazzy 环境 | 待执行（一键脚本已备） |
-| 2 | 固件烧录与 agent 连通 | 未开始 |
+| 0 | Git 基线与仓库骨架 | ✅ 完成（`docs/00_repo_setup.md`） |
+| 1 | Ubuntu 24.04 + ROS2 Jazzy 环境 | ✅ 完成（本机已核实：jazzy + colcon + agent 源码编译） |
+| 2 | 固件烧录与 agent 连通 | 🔶 2a 固件 v6.1 适配 ✅ / 2b 烧录连通 ⏭（下一步） |
 | 3 | 工作空间编译与 bringup | 未开始 |
 | 4 | Cartographer SLAM 建图 | 未开始 |
 | 5 | 自研避障节点（C++ rclcpp） | 未开始 |
 | 6 | Nav2 自主导航 | 未开始 |
 | 6.5 | （可选）相机图传接入 | 未开始 |
 | 7 | 文档归总与简历版 README | 未开始 |
+
+各阶段的目标/命令/验收/知识体系/坑位详见 **[docs/11_项目阶段框架.md](docs/11_项目阶段框架.md)**。
 
 ## 快速开始
 
