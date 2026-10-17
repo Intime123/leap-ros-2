@@ -109,6 +109,6 @@ idf.py build
 - [x] `idf.py build` BUILD_EXIT=0
 - [x] 固件产物 leap_low_v1.bin / merged-binary.bin 生成
 - [x] 主机端构建依赖（catkin_pkg/empy 3.3.4/lark）固化记录
-- [ ] v6.1 删除完成并 `eim list` 确认（remove 挂起，待重执行）
-- [ ] 烧录上板（需物理操作：按 BOOT、插 USB）
-- [ ] agent 连通验证（/odom /imu /scan /battery_state /ultrasonic 五话题上线）
+- [x] v6.1 删除完成并 `eim list` 确认（2026-10-17 16:04，IDF 本体 + esp-15.2.0 toolchain + python venv + 激活脚本全清）
+- [x] 烧录上板（2026-10-17 16:10，经 BOOT 手动进下载模式；过程排障：串口权限 dialout 组、`No serial data received` 需 BOOT+RESET 组合键）
+- [x] agent 连通验证（2026-10-17 16:56，micro_ros_agent udp4:8888，五话题上线：/odom /imu /scan /battery_state /ultrasonic，WiFi 走手机热点 2.4GHz）
