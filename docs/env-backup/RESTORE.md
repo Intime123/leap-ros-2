@@ -11,7 +11,7 @@
 - Python venv：`~/.espressif/tools/python/v5.5.3/venv`（已补装 catkin_pkg / empy==3.3.4 / lark，主机端 colcon 构建必需）
 - 激活脚本：`source ~/.espressif/tools/activate_idf_v5.5.3.sh`
 - VS Code 扩展已直连 v5.5.3：`~/.config/Code/User/settings.json`（idf.espIdfPath / toolsPath / pythonInstallPath / openOcdScriptsPath）
-- v6.1：**待删除**（实编译判定不兼容：cJSON 组件移出 + legacy I2C 驱动移除；`eim remove v6.1` 曾挂起，待重执行，可释放约 2.4G）
+- v6.1：**已删除**（2026-10-17 16:04，实编译判定不兼容；IDF 本体 + esp-15.2.0 toolchain + python venv + 激活脚本均已清除，`eim list` 仅剩 v5.5.3）
 
 > **版本结论（阶段 2 实证）**：v6.1 编译上游固件必败（配置阶段 `Failed to resolve component 'json'`；源码 3 文件用 legacy `driver/i2c.h`）。本项目一律用 **v5.5.3**。完整排错过程见 `docs/02_firmware_build.md`。
 

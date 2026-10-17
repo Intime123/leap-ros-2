@@ -53,8 +53,8 @@ leap-ros-2/
 |---|---|---|
 | 0 | Git 基线与仓库骨架 | ✅ 完成（`docs/00_repo_setup.md`） |
 | 1 | Ubuntu 24.04 + ROS2 Jazzy 环境 | ✅ 完成（本机已核实：jazzy + colcon + agent 源码编译） |
-| 2 | 固件烧录与 agent 连通 | 🔶 2a 固件 v6.1 适配 ✅ / 2b 烧录连通 ⏭（下一步） |
-| 3 | 工作空间编译与 bringup | 未开始 |
+| 2 | 固件烧录与 agent 连通 | ✅ 完成（2026-10-17：v6.1 判定不兼容迁移 v5.5.3，固件上板，五话题上线；`docs/02_firmware_build.md`） |
+| 3 | 工作空间编译与 bringup | 🔶 进行中（下一步） |
 | 4 | Cartographer SLAM 建图 | 未开始 |
 | 5 | 自研避障节点（C++ rclcpp） | 未开始 |
 | 6 | Nav2 自主导航 | 未开始 |
