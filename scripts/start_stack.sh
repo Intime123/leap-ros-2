@@ -23,8 +23,11 @@ for cand in "$HOME/microros_agent_ws" "$HOME/microros_ws"; do
   if [ -f "$cand/install/setup.bash" ]; then AGENT_WS="$cand"; break; fi
 done
 if [ -n "$AGENT_WS" ]; then
+  # colcon 生成的 install/setup.bash 同样有未绑定变量（COLCON_TRACE 等），set +u 包裹
+  set +u
   # shellcheck disable=SC1091
   source "$AGENT_WS/install/setup.bash"
+  set -u
   echo "agent 工作区: $AGENT_WS"
 else
   echo "未找到 micro_ros_agent 源码工作区，尝试用系统包" >&2
