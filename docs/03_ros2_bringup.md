@@ -93,6 +93,7 @@ bash scripts/check_bringup.sh               # 体检：话题/频率/QoS/TF
 ## 知识体系
 
 - 理论：TF 树与 frame 约定（`odom`→`base_footprint`→`base_link`，REP-105）；URDF 固定关节建模；ROS2 QoS 兼容矩阵（RELIABLE pub → BEST_EFFORT sub 兼容，反之不兼容）**【本阶段新掌握】**；差速底盘速度指令单位约定。
+- **teleop 速度刻度【实测澄清】**：`teleop_twist_keyboard` 的 `speed` 是**绝对速度基准**（m/s，按 `i` 即发该值），`z/x` 每次仅 ±10%。默认 1.0 m/s = 3.6 km/h 对 65mm 轮小车已是冲刺速度。固件换算链已核实无放大（`linear.x×1000`→mm/s→`×0.2938`→RPM，轮径 65mm，`motion_controller.cpp:11-16`）。**建图推荐刻度：speed≈0.25 m/s、turn≈0.5 rad/s**（≈29°/s），超速会导致 Cartographer 激光帧间失配。
 - 工具：colcon（`--packages-select` / `--cmake-args` / 缓存行为）、rosdep、`ros2 node|topic|pkg` 系列、tf2_echo、rsync 单向同步、URDF+RViz 可视化。**【colcon 缓存行为为本阶段新掌握】**
 - 工程：工作空间与仓库解耦 + 单向同步（避免 submodule 与构建产物互相污染）；把踩过的坑固化成幂等脚本（`build_ws.sh` 可重复执行）；先离线自测再上实车（降低硬件依赖的调试成本）。
 

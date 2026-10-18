@@ -5,3 +5,7 @@
 	path = src/upstream/leap_ros_mcu_driver
 	url = https://github.com/czu963889306-dev/leap_ros_mcu_driver.git
 	ignore = dirty
+[submodule "src/upstream/esp32_s3_wifi_camera"]
+	path = src/upstream/esp32_s3_wifi_camera
+	url = git@github.com:czu963889306-dev/esp32_s3_wifi_camera.git
+	ignore = all
