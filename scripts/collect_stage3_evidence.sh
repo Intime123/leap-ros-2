@@ -41,7 +41,9 @@ timeout 5 ros2 topic echo --once /scan 2>&1 | head -20 > "$OUT/scan_once.txt"; e
 timeout 5 ros2 topic echo --once /battery_state 2>&1 | head -20 > "$OUT/battery_once.txt"; echo "saved battery_once.txt"
 
 echo "=== [4/4] bag 录制 60 秒：请用键盘开车（直行 1 米 → 停 → 原地转 90°） ==="
-timeout 60 ros2 bag record -o "$OUT/rosbag" /odom /scan /imu /tf /tf_static /cmd_vel /battery_state 2>&1 | tail -3
+# < /dev/null 必加：recorder 启动时初始化键盘监听（SPACE 暂停），
+# stdin 状态异常时会阻塞在初始化阶段——不建目录、无输出，timeout 到点即死。
+timeout 60 ros2 bag record -o "$OUT/rosbag" /odom /scan /imu /tf /tf_static /cmd_vel /battery_state < /dev/null 2>&1 | tail -3
 
 echo "完成: $OUT"
 ls -la "$OUT"
