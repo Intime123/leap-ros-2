@@ -46,6 +46,7 @@ leap-ros-2/
 | `docs/02_firmware_build.md` | 阶段 2 完整留痕：v6.1 判定、v5.5.3 迁移、烧录与 agent 连通 |
 | `docs/03_ros2_bringup.md` | 阶段 3：工作空间编译、bringup 自测、固件 QoS 与单位约定梳理 |
 | `docs/05_camera_stream.md` | 阶段 6.5：WiFi 视觉模块编译/烧录/配网/看流 |
+| `docs/06_cartographer_mapping.md` | 阶段 4：Cartographer 建图配置选型、操作要领、保存地图 |
 | `docs/13_简历与面试问答.md` | 简历三版描述 + 分模块面试答题库 |
 | `docs/template_phase.md` | 阶段总结模板（每阶段完成后填写） |
 | `docs/00_repo_setup.md` | 阶段 0 完整记录 |
@@ -58,7 +59,7 @@ leap-ros-2/
 | 1 | Ubuntu 24.04 + ROS2 Jazzy 环境 | ✅ 完成（本机已核实：jazzy + colcon + agent 源码编译） |
 | 2 | 固件烧录与 agent 连通 | ✅ 完成（2026-10-17：v6.1 判定不兼容迁移 v5.5.3，固件上板，五话题上线；`docs/02_firmware_build.md`） |
 | 3 | 工作空间编译与 bringup | 🔶 编译/自测完成（2026-10-17，4 包 8s 通过，`docs/03_ros2_bringup.md`）；实车遥控待本人执行 |
-| 4 | Cartographer SLAM 建图 | 未开始 |
+| 4 | Cartographer SLAM 建图 | 🔶 配置选型与操作文档就绪（`docs/06_cartographer_mapping.md`，必须用 `xuegecar_2d.lua` 规避 TF 双父冲突）；实车建图待本人执行 |
 | 5 | 自研避障节点（C++ rclcpp） | 未开始 |
 | 6 | Nav2 自主导航 | 未开始 |
 | 6.5 | （可选）相机图传接入 | 🔶 编译验证通过（2026-10-18，`gc0308_http_stream.bin` 990KB，submodule 已入库，`docs/05_camera_stream.md`）；烧录配网待本人执行 |
